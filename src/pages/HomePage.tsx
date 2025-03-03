@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { PostSchema } from "../types/PostInterface";
+import Post from "../components/Post";
 
 const HomePage = () => {
   const [posts, setPosts] = useState<PostSchema[] | []>([]);
@@ -39,7 +40,7 @@ const HomePage = () => {
 
       <div className="posts">
         {posts.map((post) => (
-          <h3>{post.title}</h3>
+          <Post key={post.id} post={post} />
         ))}
       </div>
     </div>
