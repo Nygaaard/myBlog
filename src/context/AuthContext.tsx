@@ -1,4 +1,10 @@
-import { createContext, useState, useContext, ReactNode } from "react";
+import {
+  createContext,
+  useState,
+  useContext,
+  ReactNode,
+  useEffect,
+} from "react";
 import {
   User,
   LoginCredentials,
@@ -17,6 +23,7 @@ interface AuthProviderProps {
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
 
+  // Logga in
   const login = async (credentials: LoginCredentials) => {
     try {
       const res = await fetch("http://localhost:3000/login", {
@@ -34,16 +41,55 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       const data = (await res.json()) as AuthResponse;
 
       localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
       setUser(data.user);
     } catch {
       throw new Error("Något gick fel...");
     }
   };
 
+  //Logga ut
   const logout = () => {
     localStorage.removeItem("token");
     setUser(null);
   };
+
+  const checkToken = async () => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      return;
+    }
+
+    try {
+      const resp = await fetch("http://localhost:3000/validate", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+      });
+
+      if (resp.ok) {
+        const data = await resp.json();
+        setUser(data.user);
+      } else {
+        console.error("Token validation failed:", resp.statusText);
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        setUser(null);
+      }
+    } catch (error) {
+      console.error("Error in checkToken:", error);
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      setUser(null);
+    }
+  };
+
+  useEffect(() => {
+    checkToken();
+  }, []);
 
   return (
     <AuthContext.Provider value={{ user, login, logout }}>
