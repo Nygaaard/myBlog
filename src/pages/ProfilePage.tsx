@@ -1,4 +1,4 @@
-const Profile = () => {
+const ProfilePage = () => {
   return (
     <div>
       <h2>Min sida</h2>
@@ -6,4 +6,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default ProfilePage;
