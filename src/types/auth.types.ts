@@ -7,7 +7,7 @@ export interface User {
     createdAt: string
 }
 
-export interface loginCredentials {
+export interface LoginCredentials {
     username: string,
     password: string
 }
@@ -19,6 +19,6 @@ export interface AuthResponse {
 
 export interface AuthContextType {
     user: User | null,
-    login: (credentials: loginCredentials) => Promise<void>;
+    login: (credentials: LoginCredentials) => Promise<void>;
     logout: () => void;
 }
