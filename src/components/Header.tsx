@@ -1,6 +1,9 @@
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Header = () => {
+  const { user, logout } = useAuth();
+
   return (
     <header>
       <h1>Blog</h1>
@@ -13,7 +16,11 @@ const Header = () => {
             <NavLink to="/profile">Min sida</NavLink>
           </li>
           <li>
-            <NavLink to="/login">Logga in</NavLink>
+            {!user ? (
+              <NavLink to="/login">Logga in</NavLink>
+            ) : (
+              <button onClick={logout}>Logga ut</button>
+            )}
           </li>
         </ul>
       </nav>
