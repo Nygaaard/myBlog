@@ -4,7 +4,7 @@ export interface PostSchema {
     content: string;
     createdAt: string;
 }
-
+ 
 export interface ErrorData {
     title?: string;
     content?: string;
