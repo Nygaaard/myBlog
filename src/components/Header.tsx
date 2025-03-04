@@ -6,7 +6,7 @@ const Header = () => {
 
   return (
     <header>
-      <h1>Blog</h1>
+      <h1>Blogg</h1>
       <nav>
         <ul>
           <li>
