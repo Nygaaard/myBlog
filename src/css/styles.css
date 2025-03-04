@@ -1,0 +1,151 @@
+/* ALLMÄNNA STILAR */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    max-width: 1170px;
+    margin: 0 auto;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1.1em;
+    line-height: 1.5em;
+    background-color: antiquewhite;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 110px;
+    background-color: rgb(221, 208, 190);
+}
+
+header h1 {
+    padding: 1rem;
+}
+
+.menu {
+    display: flex;
+    list-style: none;
+}
+
+.menu li {
+    padding: 1rem;
+}
+
+.menu li a {
+    font-size: 1.1em;
+    text-decoration: none;
+    color: #181818;
+}
+
+.menu li a:hover {
+    color: #534e4e;
+}
+
+.login-btn {
+    background-color: #007bff;
+    padding: 0.4rem 1rem;
+    color: #fff;
+    border-radius: 4px;
+    box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.3);
+}
+
+.login-btn:hover {
+    background-color: #0056b3;
+    cursor: pointer;
+}
+
+/* LOGIN PAGE */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10vh;
+}
+
+.login-box {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 450px;
+    width: 100%;
+}
+
+.login-box h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 0.9em;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.error-message {
+    color: red;
+    margin-bottom: 10px;
+}
+
+/* FOOTER */
+footer {
+    background-color: rgb(221, 208, 190);
+    color: #181818;
+    text-align: center;
+    padding: 20px;
+    bottom: 0;
+    width: 100%;
+    max-width: 1170px;
+    margin: 0 auto;
+    position: fixed;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+footer a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+footer a:focus {
+    outline: 2px solid #007bff;
+}

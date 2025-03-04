@@ -8,7 +8,7 @@ const Header = () => {
     <header>
       <h1>Blogg</h1>
       <nav>
-        <ul>
+        <ul className="menu">
           <li>
             <NavLink to="/">Hem</NavLink>
           </li>
@@ -17,9 +17,13 @@ const Header = () => {
           </li>
           <li>
             {!user ? (
-              <NavLink to="/login">Logga in</NavLink>
+              <NavLink to="/login">
+                <button className="login-btn">Logga in</button>
+              </NavLink>
             ) : (
-              <button onClick={logout}>Logga ut</button>
+              <button onClick={logout} className="login-btn">
+                Logga ut
+              </button>
             )}
           </li>
         </ul>
