@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { PostSchema } from "../types/PostInterface";
 import Post from "../components/Post";
+import { getData } from "../components/api";
 
 const HomePage = () => {
   const [posts, setPosts] = useState<PostSchema[] | []>([]);
@@ -8,29 +9,8 @@ const HomePage = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    getData();
+    getData(setLoading, setPosts, setError);
   }, []);
-
-  const getData = async () => {
-    try {
-      setLoading(true);
-      const response = await fetch("http://localhost:3000/posts");
-
-      if (!response.ok) {
-        throw Error("Något gick fel...");
-      } else {
-        const data = await response.json();
-
-        //Set posts
-        setPosts(data);
-      }
-    } catch {
-      setError("Något gick fel vid hämtning... ");
-    } finally {
-      //Avbryt laddning
-      setLoading(false);
-    }
-  };
 
   return (
     <div className="app-container">
