@@ -33,21 +33,23 @@ const ProfilePage = () => {
   };
 
   return (
-    <div>
+    <div className="profile-container">
       {loading && <p className="loading">Laddar...</p>}
       {error && <p className="error-message">{error}</p>}
       <h2>Min sida</h2>
       <h3>Hej och välkommen {user?.firstname || "Användare"}</h3>
       <Form editPost={editPost} onUpdate={handleUpdate} />
-      {posts.map((post) => (
-        <div key={post.id}>
-          <Post post={post} />
-          <button onClick={() => handleEdit(post)}>Hantera</button>
-          <button onClick={() => handleDelete(post.id.toString())}>
-            Radera
-          </button>
-        </div>
-      ))}
+      <div className="profile-posts">
+        {posts.map((post) => (
+          <div key={post.id} className="profile-post">
+            <Post post={post} />
+            <button onClick={() => handleEdit(post)}>Hantera</button>
+            <button onClick={() => handleDelete(post.id.toString())}>
+              Radera
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

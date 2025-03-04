@@ -100,7 +100,7 @@ const Form: React.FC<FormProps> = ({ editPost, onUpdate }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="form-container">
       <label htmlFor="title">Titel:</label>
       <input
         type="text"
@@ -108,6 +108,7 @@ const Form: React.FC<FormProps> = ({ editPost, onUpdate }) => {
         id="title"
         value={formData.title}
         onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+        className="form-input"
       />
       {errors.title && <span className="error-message">{errors.title}</span>}
 
@@ -118,12 +119,13 @@ const Form: React.FC<FormProps> = ({ editPost, onUpdate }) => {
         id="content"
         value={formData.content}
         onChange={(e) => setFormData({ ...formData, content: e.target.value })}
+        className="form-input"
       />
       {errors.content && (
         <span className="error-message">{errors.content}</span>
       )}
 
-      <input type="submit" value="Lägg till inlägg" />
+      <input type="submit" value="Lägg till inlägg" className="submit-btn" />
     </form>
   );
 };
