@@ -9,7 +9,14 @@ const HomePage = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    getData(setLoading, setPosts, setError);
+    getData(
+      setLoading,
+      (data) => {
+        console.log("API Response:", data);
+        setPosts(data);
+      },
+      setError
+    );
   }, []);
 
   return (
@@ -22,12 +29,10 @@ const HomePage = () => {
         <div className="posts">
           {posts.map((post) => (
             <div key={post.id} className="post">
-              {/* Här gör vi endast rubriken klickbar */}
               <NavLink to={`/posts/${post.id}`}>
                 <h3>{post.title}</h3>
               </NavLink>
               <p>{post.content}</p>
-              <p>{new Date(post.createdAt).toLocaleDateString()}</p>
             </div>
           ))}
         </div>

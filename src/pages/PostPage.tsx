@@ -34,7 +34,9 @@ const PostPage = () => {
         <>
           <h2>{post.title}</h2>
           <p>{post.content}</p>
-          <p>{new Date(post.createdAt).toLocaleDateString()}</p>
+          <p className="date">
+            {new Date(post.created_at.replace(" ", "T")).toLocaleString()}
+          </p>
         </>
       )}
     </div>

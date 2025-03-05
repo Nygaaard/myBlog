@@ -2,7 +2,7 @@ export interface PostSchema {
     id: number;
     title: string;
     content: string;
-    createdAt: string;
+    created_at: string;
 }
  
 export interface ErrorData {

@@ -5,7 +5,7 @@ const Post = ({ post }: { post: PostSchema }) => {
     <div className="post">
       <h3>{post.title}</h3>
       <p>{post.content}</p>
-      <p>{new Date(post.createdAt).toLocaleDateString()}</p>
+      <p>{new Date(post.created_at).toLocaleDateString()}</p>
     </div>
   );
 };
