@@ -12,16 +12,17 @@ import {
   AuthContextType,
 } from "../types/auth.types";
 
-//Skapa context
+// Skapa context
 const AuthContext = createContext<AuthContextType | null>(null);
 
-//Interface för context
+// Interface för context
 interface AuthProviderProps {
   children: ReactNode;
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState<boolean>(true); // Lägg till en loading state
 
   // Logga in
   const login = async (credentials: LoginCredentials) => {
@@ -48,7 +49,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
-  //Logga ut
+  // Logga ut
   const logout = () => {
     localStorage.removeItem("token");
     setUser(null);
@@ -58,6 +59,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const token = localStorage.getItem("token");
 
     if (!token) {
+      setLoading(false);
       return;
     }
 
@@ -84,6 +86,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
       setUser(null);
+    } finally {
+      setLoading(false); // När vi har kontrollerat token så stoppar vi loading
     }
   };
 
@@ -93,7 +97,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   return (
     <AuthContext.Provider value={{ user, login, logout }}>
-      {children}
+      {loading ? <p>Loading...</p> : children}{" "}
+      {/* Lägger till en loading state */}
     </AuthContext.Provider>
   );
 };

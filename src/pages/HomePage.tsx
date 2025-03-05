@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { PostSchema } from "../types/PostInterface";
-import Post from "../components/Post";
 import { getData } from "../components/api";
+import { NavLink } from "react-router-dom";
 
 const HomePage = () => {
   const [posts, setPosts] = useState<PostSchema[] | []>([]);
@@ -18,11 +18,22 @@ const HomePage = () => {
       {loading && <p className="loading">Laddar...</p>}
       {error && <p className="error-message">{error}</p>}
 
-      <div className="posts">
-        {posts.map((post) => (
-          <Post key={post.id} post={post} />
-        ))}
-      </div>
+      {posts.length > 0 ? (
+        <div className="posts">
+          {posts.map((post) => (
+            <div key={post.id} className="post">
+              {/* Här gör vi endast rubriken klickbar */}
+              <NavLink to={`/posts/${post.id}`}>
+                <h3>{post.title}</h3>
+              </NavLink>
+              <p>{post.content}</p>
+              <p>{new Date(post.createdAt).toLocaleDateString()}</p>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p>Inga inlägg hittades...</p>
+      )}
     </div>
   );
 };

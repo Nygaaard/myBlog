@@ -39,17 +39,21 @@ const ProfilePage = () => {
       <h2>Min sida</h2>
       <h3>Hej och välkommen {user?.firstname || "Användare"}</h3>
       <Form editPost={editPost} onUpdate={handleUpdate} />
-      <div className="profile-posts">
-        {posts.map((post) => (
-          <div key={post.id} className="profile-post">
-            <Post post={post} />
-            <button onClick={() => handleEdit(post)}>Hantera</button>
-            <button onClick={() => handleDelete(post.id.toString())}>
-              Radera
-            </button>
-          </div>
-        ))}
-      </div>
+      {posts.length > 0 ? (
+        <div className="profile-posts">
+          {posts.map((post) => (
+            <div key={post.id} className="profile-post">
+              <Post post={post} />
+              <button onClick={() => handleEdit(post)}>Hantera</button>
+              <button onClick={() => handleDelete(post.id.toString())}>
+                Radera
+              </button>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p>Inga inlägg hittades...</p>
+      )}
     </div>
   );
 };
